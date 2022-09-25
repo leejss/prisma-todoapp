@@ -1,13 +1,30 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import Item from "../components/Item";
+import { getTodos } from "../fetch-api/todos";
 
 const Home = () => {
+  const { data, isLoading } = useQuery(["todos"], getTodos);
+
   return (
-    <div>
-      <Title>TodoApp with prisma</Title>
-      {/* Todo list */}
-      <div className="flex justify-center mt-6">
-        <AddTodoButton />
+    <div className=" shrink-0 grow flex flex-col items-center justify-between h-full  max-w-[400px] min-w-[280px]">
+      <div className="flex-1 w-full p-2 bg-white rounded-md">
+        {isLoading ? (
+          <>
+            <Skeleton height={35} />
+            <Skeleton height={35} />
+          </>
+        ) : (
+          <ul>
+            <Item todo={data![0]} />
+          </ul>
+        )}
+      </div>
+      <div className="flex w-full gap-2 py-2">
+        <Button>Add</Button>
+        <Input />
       </div>
     </div>
   );
@@ -15,18 +32,4 @@ const Home = () => {
 
 export default Home;
 
-const Title = ({ children }: { children: ReactNode }) => {
-  return (
-    <h1 className="font-bold text-center text-orange-700 text-8xl">
-      {children}
-    </h1>
-  );
-};
-
-const AddTodoButton = () => {
-  return (
-    <button className="p-4 text-3xl font-bold border border-orange-500 rounded-lg hover:text-orange-500">
-      <Link href="add">ADD TODO</Link>
-    </button>
-  );
-};
+// Set loading state
