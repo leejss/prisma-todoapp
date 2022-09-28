@@ -4,7 +4,7 @@ const Input = styled("input", {
   all: "unset",
   borderRadius: "4px",
   backgroundColor: "#ffffff",
-  padding: "4px 8px",
+  padding: "6px 10px",
   width: "100%",
 });
 

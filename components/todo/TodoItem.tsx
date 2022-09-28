@@ -1,15 +1,14 @@
 import type { Todo } from "@prisma/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import formatDate from "../utils/formatDate";
-import Checkbox from "./Checkbox";
+import { useQueryClient } from "@tanstack/react-query";
+import formatDate from "../../utils/formatDate";
+import Checkbox from "../Checkbox";
 
 interface ItemProps {
   todo: Todo;
 }
 
-const Item = ({ todo }: ItemProps) => {
+const TodoItem = ({ todo }: ItemProps) => {
   const { content, createdAt, done, id } = todo;
-  // const
 
   // const { mutate } = useMutation();
   const queryClient = useQueryClient();
@@ -31,4 +30,4 @@ const Item = ({ todo }: ItemProps) => {
   );
 };
 
-export default Item;
+export default TodoItem;

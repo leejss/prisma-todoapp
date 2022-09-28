@@ -6,11 +6,12 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const result = await prismaClient.todo.findMany();
-
-    res.status(200).json(result);
+    return res.status(200).json(result);
   }
   if (req.method === "POST") {
-    // POST todos
+    const result = await prismaClient.todo.create({
+      data: req.body,
+    });
+    return res.status(200).json(result);
   }
-  res.status(200).json("TEST");
 }
