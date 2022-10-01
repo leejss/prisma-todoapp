@@ -8,7 +8,7 @@ const Todos = () => {
 
   return (
     <>
-      <div className="flex-1 w-full p-2 bg-white rounded-md">
+      <div className="flex-1 w-full p-2 bg-white rounded-md max-h-[500px] min-h-[350px] overflow-auto">
         {todosQuery.isLoading ? (
           <div className="flex flex-col gap-2">
             <Skeleton height={35} />

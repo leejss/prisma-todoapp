@@ -8,14 +8,14 @@ interface CheckboxProps {
 
 const Checkbox = ({ checked, onChange, value }: CheckboxProps) => {
   return (
-    <div className="flex;">
+    <div className="flex">
       <label>
         {checked ? (
           <CheckCircledIcon width={24} height={24} />
         ) : (
           <ValueIcon width={24} height={24} />
         )}
-        <input type="text" hidden value={value} onChange={() => {}} />
+        <input type="checkbox" hidden value={value} onChange={onChange} />
       </label>
     </div>
   );

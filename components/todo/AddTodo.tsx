@@ -2,11 +2,11 @@ import type { Prisma } from "@prisma/client";
 import { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
-import useTodoMutation, { postTodo } from "./todoMutation";
+import { postTodo, useTodosMutation } from "./todoMutation";
 
 const AddTodo = () => {
   const [content, setContent] = useState("");
-  const mutation = useTodoMutation();
+  const mutation = useTodosMutation();
   return (
     <form
       onSubmit={async (e) => {

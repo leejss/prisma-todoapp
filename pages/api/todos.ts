@@ -14,4 +14,9 @@ export default async function handler(
     });
     return res.status(200).json(result);
   }
+
+  if (req.method === "DELETE") {
+    const result = await prismaClient.todo.deleteMany();
+    return res.status(200).json(result);
+  }
 }
