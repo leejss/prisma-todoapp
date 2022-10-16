@@ -2,16 +2,16 @@ import type { Prisma } from "@prisma/client";
 import { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
-import { postTodo, useTodosMutation } from "./todoMutation";
+import { useTodosMutation } from "./todoMutation";
 
 const AddTodo = () => {
   const [content, setContent] = useState("");
   const mutation = useTodosMutation();
+
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-
         const todo: Prisma.TodoCreateInput = {
           content,
           done: false,
@@ -22,11 +22,12 @@ const AddTodo = () => {
           },
         });
       }}
-      className="flex w-full gap-2 py-2"
+      className="w-full min-h-[50px]  bg-light-dark rounded"
     >
-      <Button type="submit">Add</Button>
-      <Input
-        value={content}
+      <input
+        type="text"
+        placeholder="Add a Task"
+        className="w-full h-full bg-transparent px-2 text-sm placeholder:text-neon-green"
         onChange={(e) => {
           setContent(e.target.value);
         }}
