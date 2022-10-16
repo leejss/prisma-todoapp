@@ -1,5 +1,4 @@
 import Skeleton from "react-loading-skeleton";
-import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 import useTodosQuery from "./todosQuery";
 
@@ -8,7 +7,7 @@ const Todos = () => {
 
   return (
     <>
-      <div className="flex-1 w-full p-2 bg-white rounded-md max-h-[500px] min-h-[350px] overflow-auto">
+      <div className="flex-1 w-full p-2 bg-white rounded-md h-full overflow-auto">
         {todosQuery.isLoading ? (
           <div className="flex flex-col gap-2">
             <Skeleton height={35} />
@@ -25,7 +24,6 @@ const Todos = () => {
           </ul>
         )}
       </div>
-      <AddTodo />
     </>
   );
 };
