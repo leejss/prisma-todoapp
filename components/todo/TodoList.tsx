@@ -1,5 +1,4 @@
-import { ValueIcon } from "@radix-ui/react-icons";
-import Skeleton from "react-loading-skeleton";
+import { formatTodoDate } from "../../utils/dateHelper";
 import Checkbox from "../Checkbox";
 import useTodosQuery from "./todosQuery";
 
@@ -13,28 +12,6 @@ const TodoList = () => {
       <TodoItem />
     </ul>
   );
-
-  // return (
-  //   <>
-  //     <div className="flex-1 w-full p-2 bg-white rounded-md h-full overflow-auto">
-  //       {todosQuery.isLoading ? (
-  //         <div className="flex flex-col gap-2">
-  //           <Skeleton height={35} />
-  //           <Skeleton height={35} />
-  //         </div>
-  //       ) : (
-  //         <ul className="flex flex-col gap-2">
-  //           {todosQuery.isSuccess &&
-  //             todosQuery.data.map((todo) => (
-  //               <li key={todo.id}>
-  //                 <TodoItem todo={todo} />
-  //               </li>
-  //             ))}
-  //         </ul>
-  //       )}
-  //     </div>
-  //   </>
-  // );
 };
 
 export default TodoList;
@@ -48,8 +25,8 @@ const TodoItem = () => {
       <div className="flex flex-col text-sm">
         <p className="">you dont know js yet chapter 6 읽기</p>
         <div>
-          <span>Tasks</span>
-          <span>Sun, Oct 9</span>
+          <span className="text-gray-400">Tasks </span>
+          <span>{formatTodoDate(new Date())}</span>
         </div>
       </div>
     </li>

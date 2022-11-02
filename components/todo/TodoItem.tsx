@@ -1,5 +1,5 @@
 import type { Todo } from "@prisma/client";
-import formatDate from "../../utils/formatDate";
+import { formatDate } from "../../utils/dateHelper";
 import Checkbox from "../Checkbox";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDeleteTodoMutation, usePatchTodoMutation } from "./todoMutation";

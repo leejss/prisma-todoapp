@@ -1,12 +1,14 @@
 import type { Prisma } from "@prisma/client";
 import { useState } from "react";
-import Button from "../Button";
-import Input from "../Input";
-import { useTodosMutation } from "./todoMutation";
+import { postTodo, useMut, useTodosMutation } from "./todoMutation";
 
 const AddTodo = () => {
   const [content, setContent] = useState("");
   const mutation = useTodosMutation();
+
+  const m = useMut(postTodo);
+
+  // mutate함수는 postTodo여야 한다,.
 
   return (
     <form
@@ -22,7 +24,7 @@ const AddTodo = () => {
           },
         });
       }}
-      className="w-full min-h-[50px]  bg-light-dark rounded"
+      className="w-full min-h-[50px] bg-light-dark rounded"
     >
       <input
         type="text"
