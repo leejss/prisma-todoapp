@@ -1,32 +1,58 @@
+import { atom, useAtom } from "jotai";
+import { FC } from "react";
 import { formatTodoDate } from "../../utils/dateHelper";
 import Checkbox from "../Checkbox";
+import Spinner from "../Spinner";
 import useTodosQuery from "./todosQuery";
 
+export const listNodeAtom = atom<HTMLUListElement | null>(null);
+
 const TodoList = () => {
-  const todosQuery = useTodosQuery();
+  const { data, isLoading } = useTodosQuery();
+  const [listNode, setListNodeAtom] = useAtom(listNodeAtom);
+
+  console.log(data);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
-    <ul className="flex flex-col gap-1">
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+    <ul
+      className="flex flex-col gap-1 overflow-auto"
+      ref={(node) => {
+        if (node) {
+          setListNodeAtom(node);
+        }
+      }}
+    >
+      {data &&
+        data.map(({ content, createdAt, done, id }) => (
+          <TodoItem key={id} content={content} date={createdAt} done={done} />
+        ))}
     </ul>
   );
 };
 
 export default TodoList;
 
-const TodoItem = () => {
+interface TodoItemProps {
+  content: string;
+  date: Date;
+  done: boolean;
+}
+
+const TodoItem: FC<TodoItemProps> = ({ content, date, done }) => {
   return (
-    <li className="flex bg-warm-dark text-white p-2 rounded">
+    <li className="animate-fadeIn flex bg-dar text-white p-2 rounded bg-dark-800">
       <button className="flex justify-center items-center px-3">
-        <Checkbox checked value="" onChange={() => {}} />
+        <Checkbox checked={done} value="" onChange={() => {}} />
       </button>
       <div className="flex flex-col text-sm">
-        <p className="">you dont know js yet chapter 6 읽기</p>
+        <p className="">{content}</p>
         <div>
           <span className="text-gray-400">Tasks </span>
-          <span>{formatTodoDate(new Date())}</span>
+          <span>{formatTodoDate(new Date(date))}</span>
         </div>
       </div>
     </li>

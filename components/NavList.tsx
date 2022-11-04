@@ -1,6 +1,6 @@
 const NavList = () => {
   return (
-    <ul className="">
+    <ul>
       <li>Todos</li>
       <li>Importants</li>
       <li>Done</li>
