@@ -1,10 +1,7 @@
+import prismaClient from "@root/db/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import prismaClient from "../../../db/client";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string;
 
   // Delete
@@ -23,8 +20,6 @@ export default async function handler(
   }
 
   if (req.method === "PATCH") {
-    console.log(req.body);
-
     try {
       const result = await prismaClient.todo.update({
         where: {

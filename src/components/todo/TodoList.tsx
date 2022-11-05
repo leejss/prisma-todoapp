@@ -1,4 +1,5 @@
-import { atom, useAtom } from "jotai";
+import { useMutation } from "@tanstack/react-query";
+import { atom } from "jotai";
 import { FC } from "react";
 import { formatTodoDate } from "../../utils/dateHelper";
 import Checkbox from "../Checkbox";
@@ -9,7 +10,6 @@ export const listNodeAtom = atom<HTMLUListElement | null>(null);
 
 const TodoList = () => {
   const { data, isLoading } = useTodosQuery();
-  const [listNode, setListNodeAtom] = useAtom(listNodeAtom);
 
   console.log(data);
 
@@ -18,14 +18,7 @@ const TodoList = () => {
   }
 
   return (
-    <ul
-      className="flex flex-col gap-1 overflow-auto"
-      ref={(node) => {
-        if (node) {
-          setListNodeAtom(node);
-        }
-      }}
-    >
+    <ul className="flex flex-col gap-1 overflow-auto">
       {data &&
         data.map(({ content, createdAt, done, id }) => (
           <TodoItem key={id} content={content} date={createdAt} done={done} />
@@ -43,6 +36,8 @@ interface TodoItemProps {
 }
 
 const TodoItem: FC<TodoItemProps> = ({ content, date, done }) => {
+  // done todo
+  const mutation = useMutation({});
   return (
     <li className="animate-fadeIn flex bg-dar text-white p-2 rounded bg-dark-800">
       <button className="flex justify-center items-center px-3">

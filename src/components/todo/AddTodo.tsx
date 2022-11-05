@@ -1,14 +1,11 @@
 import type { Prisma } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAtomValue } from "jotai";
 import { useState } from "react";
 import { postTodo } from "../../api/todo";
-import { listNodeAtom } from "./TodoList";
 
 const AddTodo = () => {
   const [content, setContent] = useState("");
   const queryClient = useQueryClient();
-  // const listNode = useAtomValue(listNodeAtom);
 
   const mutation = useMutation({
     mutationFn: postTodo,

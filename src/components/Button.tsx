@@ -1,4 +1,4 @@
-import { styled } from "../stitches.config";
+import { styled } from "@root/stitches.config";
 
 const Button = styled("button", {
   backgroundColor: "#FBAB7E",

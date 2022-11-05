@@ -1,9 +1,7 @@
+import prismaClient from "@root/db/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import prismaClient from "../../db/client";
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     const result = await prismaClient.todo.findMany();
     return res.status(200).json(result);
