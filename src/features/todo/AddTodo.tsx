@@ -1,18 +1,10 @@
 import type { Prisma } from "@prisma/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAddTodoMutation } from "@root/src/services/todo/todo.query";
 import { useState } from "react";
-import { postTodo } from "../../api/todo";
 
 const AddTodo = () => {
   const [content, setContent] = useState("");
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: postTodo,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["todos"]);
-    },
-  });
+  const { mutate } = useAddTodoMutation();
 
   return (
     <form
@@ -23,7 +15,7 @@ const AddTodo = () => {
           content,
           done: false,
         };
-        mutation.mutate(todo, {
+        mutate(todo, {
           onSuccess: () => {
             setContent("");
           },

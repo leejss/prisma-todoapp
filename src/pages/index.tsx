@@ -1,5 +1,5 @@
-import AddTodo from "../components/todo/AddTodo";
-import TodoList from "../components/todo/TodoList";
+import AddTodo from "@features/todo/AddTodo";
+import TodoList from "@features/todo/TodoList";
 
 const Home = () => {
   return (
