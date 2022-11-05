@@ -1,9 +1,18 @@
+import Link from "next/link";
+
+export const nav = {
+  "/": "Todos",
+  "/done": "Done",
+};
+
 const NavList = () => {
   return (
     <ul>
-      <li>Todos</li>
-      <li>Importants</li>
-      <li>Done</li>
+      {Object.keys(nav).map((n) => (
+        <ul key={n}>
+          <Link href={n}>{nav[n as keyof typeof nav]}</Link>
+        </ul>
+      ))}
     </ul>
   );
 };
